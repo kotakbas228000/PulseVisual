@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Created-By: PulseVisual Build System
+Main-Class: com.pulsevisual.PulseVisual
+Implementation-Title: PulseVisual
+Implementation-Version: 1.0.0
+Implementation-Vendor: PulseVisual Team
