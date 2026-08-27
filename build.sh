@@ -1,34 +1,40 @@
 #!/bin/bash
 
-# Компиляция и создание JAR файла для PulseVisual мода
+# Скрипт сборки PulseVisual мода для Minecraft Fabric 1.21.4
 
-echo "=== PulseVisual Build Script ==="
+echo "=== PulseVisual Build Script для Fabric 1.21.4 ==="
 echo "Компиляция исходного кода..."
 
-# Создаём директорию для скомпилированных файлов
-mkdir -p out/classes
+# Создаём директории
 mkdir -p Jar
 
-# Компилируем Java файлы
-javac -d out/classes src/main/java/com/pulsevisual/*.java
-
-# Проверяем успешность компиляции
-if [ $? -eq 0 ]; then
-    echo "✓ Компиляция успешна!"
+# Компилируем через Maven
+if command -v mvn &> /dev/null; then
+    echo "Использую Maven для сборки..."
+    mvn clean package
     
-    # Создаём JAR файл
-    echo "Создание JAR файла..."
-    cd out/classes
-    jar cfm ../../Jar/PulseVisual.jar ../../MANIFEST.MF com/
-    cd ../../
-    
-    echo "✓ JAR файл создан: Jar/PulseVisual.jar"
-    echo ""
-    echo "=== Инструкции по установке ==="
-    echo "1. Скопируйте Jar/PulseVisual.jar в папку mods вашего Minecraft"
-    echo "2. Установите Forge для вашей версии Minecraft"
-    echo "3. Запустите Minecraft и наслаждайтесь визуализацией!"
+    if [ $? -eq 0 ]; then
+        echo "✓ Сборка Maven успешна!"
+        # Копируем JAR в папку Jar
+        cp target/PulseVisual-1.21.4.jar Jar/
+        echo "✓ JAR файл скопирован в Jar/PulseVisual-1.21.4.jar"
+    else
+        echo "✗ Ошибка при сборке Maven!"
+        exit 1
+    fi
 else
-    echo "✗ Ошибка при компиляции!"
+    echo "Maven не найден. Пожалуйста, установите Maven для компиляции Fabric мода."
     exit 1
 fi
+
+echo ""
+echo "=== Инструкции по установке ==="
+echo "1. Убедитесь, что у вас установлен Minecraft Fabric 1.21.4"
+echo "2. Скопируйте Jar/PulseVisual-1.21.4.jar в папку ~/.minecraft/mods/"
+echo "3. Запустите Minecraft с Fabric Loader"
+echo "4. Нажимайте 'V' в игре для включения/отключения визуализации"
+echo "5. Нажимайте 'B' для смены типа визуализации"
+echo ""
+echo "Горячие клавиши:"
+echo "  V - Включить/Выключить визуализацию"
+echo "  B - Смена типа визуализации (Волны -> Пульс -> Частицы -> Окружность)"

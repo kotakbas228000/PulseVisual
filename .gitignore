@@ -23,7 +23,16 @@ dist/
 
 # Maven
 .m2/
+.mvn/
 
 # Temp files
 *.tmp
 *.bak
+
+# Minecraft
+.minecraft/
+run/
+
+# Gradle
+.gradle/
+build/

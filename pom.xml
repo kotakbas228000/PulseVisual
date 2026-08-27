@@ -3,50 +3,89 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    
     <groupId>com.pulsevisual</groupId>
     <artifactId>pulsevisual</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-
+    
     <name>PulseVisual</name>
-    <description>Minecraft mod with audio visualization and pulse effects</description>
-
+    <description>Minecraft Fabric mod with audio visualization for 1.21.4</description>
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <minecraft.version>1.21.4</minecraft.version>
+        <yarn.build>1.21.4+build.1</yarn.build>
+        <loader.version>0.15.7</loader.version>
+        <fabric.version>0.100.8+1.21.4</fabric.version>
     </properties>
-
+    
+    <repositories>
+        <repository>
+            <id>fabric</id>
+            <name>Fabric Maven</name>
+            <url>https://maven.fabricmc.net/</url>
+        </repository>
+    </repositories>
+    
     <dependencies>
+        <dependency>
+            <groupId>net.fabricmc</groupId>
+            <artifactId>fabric-loader</artifactId>
+            <version>${loader.version}</version>
+        </dependency>
+        
         <dependency>
             <groupId>net.minecraft</groupId>
             <artifactId>minecraft</artifactId>
-            <version>1.16.5</version>
+            <version>${minecraft.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>net.fabricmc</groupId>
+            <artifactId>yarn</artifactId>
+            <version>${yarn.build}</version>
+            <classifier>v2</classifier>
+        </dependency>
+        
+        <dependency>
+            <groupId>net.fabricmc.fabric-api</groupId>
+            <artifactId>fabric-api</artifactId>
+            <version>${fabric.version}</version>
         </dependency>
     </dependencies>
-
+    
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.11.0</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>21</source>
+                    <target>21</target>
                 </configuration>
             </plugin>
+            
+            <plugin>
+                <groupId>net.fabricmc</groupId>
+                <artifactId>fabric-maven-plugin</artifactId>
+                <version>0.16.2</version>
+            </plugin>
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.3.0</version>
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.pulsevisual.PulseVisual</mainClass>
+                            <addClasspath>true</addClasspath>
                         </manifest>
                     </archive>
+                    <finalName>PulseVisual-1.21.4</finalName>
                 </configuration>
             </plugin>
         </plugins>

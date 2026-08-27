@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "pulsevisual",
+  "version": "1.0.0",
+  "name": "PulseVisual",
+  "description": "Мод визуализации звука для Minecraft Fabric. Создает красивую визуализацию пульса и звука в реальном времени.",
+  "authors": [
+    "kotakbas228000"
+  ],
+  "contact": {
+    "homepage": "https://github.com/kotakbas228000/PulseVisual",
+    "sources": "https://github.com/kotakbas228000/PulseVisual"
+  },
+  "license": "GPL-3.0-only",
+  "icon": "assets/pulsevisual/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.pulsevisual.PulseVisualMod"
+    ],
+    "client": [
+      "com.pulsevisual.client.PulseVisualClient"
+    ]
+  },
+  "mixins": [
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "1.21.4",
+    "java": ">=21"
+  },
+  "suggests": {
+  }
+}
